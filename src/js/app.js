@@ -29,6 +29,28 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  //check if the url is complete and filter only the name
+  const twitterUrl = variables.twitter;
+  const githubUrl = variables.github;
+  const linkedinUrl = variables.linkedin;
+  const instagramUrl = variables.instagram;
+
+  let twitterName = "";
+  let githubName = "";
+  let linkedinName = "";
+  let instagramName = "";
+
+  if (twitterUrl != null)
+    twitterName = twitterUrl.replace("https://twitter.com/", "");
+
+  if (githubUrl != null)
+    githubName = githubUrl.replace("https://github.com/", "");
+
+  if (linkedinUrl != null)
+    linkedinName = twitterUrl.replace("https://linkedin.com/", "");
+
+  if (instagramUrl != null)
+    instagramName = twitterUrl.replace("https://instagra.com/", "");
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
@@ -37,10 +59,10 @@ function render(variables = {}) {
           <h2>${variables.role}</h2>
           <h3>${variables.city}, ${variables.country}</h3>
           <ul class="${variables.socialMediaPosition}">
-            <li><a href="${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="${variables.github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/${twitterName}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${githubName}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${linkedinName}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/${instagramName}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
